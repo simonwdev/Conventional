@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using FluentAssertions;
@@ -68,7 +69,7 @@ namespace Conventional.Tests.Conventional.Conventions.Assemblies
  All files matching '.\.txt' within assembly 'Conventional.Tests' must have their build action set to 'Embedded Resource'
 - Conventional\Conventions\Assemblies\non_embedded_text_file_first.txt
 - Conventional\Conventions\Assemblies\non_embedded_text_file_second.txt
- ".Trim();
+ ".Trim().Replace("\r\n", Environment.NewLine);
 
             var result = typeof(AssemblyConventionSpecificationTests).Assembly
                 .MustConformTo(Convention.MustHaveFilesBeResources(new Regex(@".\.txt")));
@@ -85,7 +86,7 @@ namespace Conventional.Tests.Conventional.Conventions.Assemblies
  All files matching '*.txt' within assembly 'Conventional.Tests' must have their build action set to 'Embedded Resource'
 - Conventional\Conventions\Assemblies\non_embedded_text_file_first.txt
 - Conventional\Conventions\Assemblies\non_embedded_text_file_second.txt
- ".Trim();
+ ".Trim().Replace("\r\n", Environment.NewLine);
 
             var result = typeof(AssemblyConventionSpecificationTests).Assembly
                 .MustConformTo(Convention.MustHaveFilesBeResources("*.txt"));
@@ -135,7 +136,7 @@ namespace Conventional.Tests.Conventional.Conventions.Assemblies
             var expectedFailureMessage = @"
 All files matching '*.txt' within assembly 'Conventional.Tests' must have their build action set to 'Embedded Resource'
 - Conventional\Conventions\Assemblies\non_embedded_text_file_first.txt
-- Conventional\Conventions\Assemblies\non_embedded_text_file_second.txt".Trim();
+- Conventional\Conventions\Assemblies\non_embedded_text_file_second.txt".Trim().Replace("\r\n", Environment.NewLine);
 
             var result = typeof(AssemblyConventionSpecificationTests).Assembly
                 .MustConformTo(Convention.MustHaveFilesBeEmbeddedResources("*.txt"));
@@ -152,7 +153,7 @@ All files matching '*.txt' within assembly 'Conventional.Tests' must have their 
 All files matching '.*NON_EMBEDDED.*' within assembly 'Conventional.Tests' must have their build action set to 'Embedded Resource'
 - Conventional\Conventions\Assemblies\non_embedded_text_file_first.txt
 - Conventional\Conventions\Assemblies\non_embedded_text_file_second.txt
-".Trim();
+".Trim().Replace("\r\n", Environment.NewLine);
 
             var matchNonEmbeddedRegEx = new Regex(".*NON_EMBEDDED.*", RegexOptions.IgnoreCase);
 

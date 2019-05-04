@@ -450,9 +450,9 @@ namespace Conventional.Tests.Conventional.Conventions.Cecil
         public void LibraryCodeShouldCallConfigureAwaitWhenAwaitingTasks_FailsWhenConfigureAwaitIsNotCalled()
         {
 
-            const string expectedFailureMessage = @"Libraries must call Task.ConfigureAwait(false) to prevent deadlocks
+            var expectedFailureMessage = @"Libraries must call Task.ConfigureAwait(false) to prevent deadlocks
 	- HasAnAsyncMethodThatAwaitsATaskAndDoesNotCallConfigureAwait.MethodThatAwaitsATaskAndDoesNotCallConfigureAwait
-";
+".Replace("\r\n", Environment.NewLine);
 
             var result = typeof(HasAnAsyncMethodThatAwaitsATaskAndDoesNotCallConfigureAwait)
                 .MustConformTo(Convention.LibraryCodeShouldCallConfigureAwaitWhenAwaitingTasks);
@@ -477,9 +477,9 @@ namespace Conventional.Tests.Conventional.Conventions.Cecil
         [Test]
         public void LibraryCodeShouldCallConfigureAwaitWhenAwaitingTasks_FailsWhenConfigureAwaitIsNotCalledButIsCalledForOtherMethods()
         {
-            const string expectedFailureMessage = @"Libraries must call Task.ConfigureAwait(false) to prevent deadlocks
+            var  expectedFailureMessage = @"Libraries must call Task.ConfigureAwait(false) to prevent deadlocks
 	- HasAnAsyncMethodThatAwaitsATaskAndDoesNotCallConfigureAwaitAndAnotherThatDoes.MethodThatAwaitsATaskAndDoesNotCallConfigureAwait
-";
+".Replace("\r\n", Environment.NewLine);;
   
             var result = typeof(HasAnAsyncMethodThatAwaitsATaskAndDoesNotCallConfigureAwaitAndAnotherThatDoes)
                 .MustConformTo(Convention.LibraryCodeShouldCallConfigureAwaitWhenAwaitingTasks);
@@ -500,9 +500,9 @@ namespace Conventional.Tests.Conventional.Conventions.Cecil
         [Test]
         public void LibraryCodeShouldCallConfigureAwaitWhenAwaitingTasks_FailsWhenConfigureAwaitIsNotCalledForASingleTask()
         {
-            const string expectedFailureMessage = @"Libraries must call Task.ConfigureAwait(false) to prevent deadlocks
+            var expectedFailureMessage = @"Libraries must call Task.ConfigureAwait(false) to prevent deadlocks
 	- HasAnAsyncMethodThatAwaitsMultipleTasksAndDoesNotCallConfigureAwaitForOne.MethodThatAwaitsMultipleTasksAndDoesNotCallConfigureAwaitForOne
-";
+".Replace("\r\n", Environment.NewLine);;
 
             var result = typeof(HasAnAsyncMethodThatAwaitsMultipleTasksAndDoesNotCallConfigureAwaitForOne)
                 .MustConformTo(Convention.LibraryCodeShouldCallConfigureAwaitWhenAwaitingTasks);

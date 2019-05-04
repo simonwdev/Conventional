@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -88,7 +89,7 @@ namespace Conventional.Tests
                 .WithKnownOffenders(1)
                 .MustConformTo(Convention.NameMustEndWith("Esquire"));
 
-            _failure.Should().Be("Expected 1 or less offenders but found 2: \r\nConventional.Tests.DoomsdayScenarios+OffenderOne\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\nConventional.Tests.DoomsdayScenarios+OffenderTwo\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\n");
+            _failure.Should().Be($"Expected 1 or less offenders but found 2: {Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderOne{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderTwo{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}");
         }
 
         [Test]
@@ -120,7 +121,7 @@ namespace Conventional.Tests
                 .ByDoomsday(doomsday)
                 .MustConformTo(Convention.NameMustEndWith("One"));
 
-            _failure.Should().Be("Doomsday is upon us! \r\nConventional.Tests.DoomsdayScenarios+OffenderTwo\r\n---------------------------------------------------\r\nType name does not end with One\r\n\r\n");
+            _failure.Should().Be($"Doomsday is upon us! {Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderTwo{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with One{Environment.NewLine}{Environment.NewLine}");
         }
 
         [Test]
@@ -133,7 +134,7 @@ namespace Conventional.Tests
                 .ByDoomsday(doomsday)
                 .MustConformTo(Convention.NameMustEndWith("Esquire"));
 
-            _failure.Should().Be("Doomsday is upon us! \r\nConventional.Tests.DoomsdayScenarios+OffenderOne\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\nConventional.Tests.DoomsdayScenarios+OffenderTwo\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\n");
+            _failure.Should().Be($"Doomsday is upon us! {Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderOne{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderTwo{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}");
         }
 
         [Test]
@@ -170,7 +171,7 @@ namespace Conventional.Tests
                 .WithWarningWithin(TimeSpan.FromDays(3))
                 .MustConformTo(Convention.NameMustEndWith("Two"));
 
-            _warning.Should().Be("Doomsday approaches! \r\nConventional.Tests.DoomsdayScenarios+OffenderOne\r\n---------------------------------------------------\r\nType name does not end with Two\r\n\r\n");
+            _warning.Should().Be($"Doomsday approaches! {Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderOne{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Two{Environment.NewLine}{Environment.NewLine}");
         }
 
         [Test]
@@ -198,7 +199,7 @@ namespace Conventional.Tests
                 .WithWarningWithin(TimeSpan.FromDays(3))
                 .MustConformTo(Convention.NameMustEndWith("Esquire"));
 
-            _failure.Should().Be("Expected 1 or less offenders but found 2: \r\nConventional.Tests.DoomsdayScenarios+OffenderOne\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\nConventional.Tests.DoomsdayScenarios+OffenderTwo\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\n");
+            _failure.Should().Be($"Expected 1 or less offenders but found 2: {Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderOne{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderTwo{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}");
         }
 
         [Test]
@@ -212,7 +213,7 @@ namespace Conventional.Tests
                 .WithMessage("Things should really end with Esquire, so they sound fancier.")
                 .MustConformTo(Convention.NameMustEndWith("Esquire"));
 
-            _warning.Should().Be("Doomsday approaches! Things should really end with Esquire, so they sound fancier.\r\nConventional.Tests.DoomsdayScenarios+OffenderOne\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\nConventional.Tests.DoomsdayScenarios+OffenderTwo\r\n---------------------------------------------------\r\nType name does not end with Esquire\r\n\r\n");
+            _warning.Should().Be($"Doomsday approaches! Things should really end with Esquire, so they sound fancier.{Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderOne{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}Conventional.Tests.DoomsdayScenarios+OffenderTwo{Environment.NewLine}---------------------------------------------------{Environment.NewLine}Type name does not end with Esquire{Environment.NewLine}{Environment.NewLine}");
         }
     }
 }

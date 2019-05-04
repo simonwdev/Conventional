@@ -38,7 +38,7 @@ namespace Conventional.Conventions.Cecil
 
         private static string GetPathToAssembly(Assembly assembly)
         {
-            return assembly.CodeBase.Replace(FileSchemePrefix, string.Empty);
+            return new Uri(assembly.CodeBase).LocalPath;
         }
 
         protected virtual void Dispose(bool disposing)
